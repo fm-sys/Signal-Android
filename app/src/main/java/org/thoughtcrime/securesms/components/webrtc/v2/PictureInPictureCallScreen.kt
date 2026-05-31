@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.CallParticipantId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.ringrtc.CameraState
 import org.signal.core.ui.R as CoreUiR
 
 private val PIP_METRICS_SELF_PORTRAIT_WIDTH = 48.dp
@@ -75,7 +76,9 @@ fun PictureInPictureCallScreen(
       renderInPip = true,
       raiseHandAllowed = false,
       onInfoMoreInfoClick = null,
-      mirrorVideo = isFullScreenLocalParticipant,
+      mirrorVideo = isFullScreenLocalParticipant &&
+        fullScreenParticipant.cameraDirection == CameraState.Direction.FRONT &&
+        !fullScreenParticipant.isScreenSharing,
       modifier = Modifier.fillMaxSize()
     )
 

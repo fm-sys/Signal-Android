@@ -446,8 +446,6 @@ private fun VideoRenderer(
   } else {
     android.graphics.Color.TRANSPARENT
   }
-  val shouldMirror = mirror && !participant.isScreenSharing
-
   AndroidView(
     factory = { context ->
       FrameLayout(context).apply {
@@ -471,7 +469,7 @@ private fun VideoRenderer(
             attachBroadcastVideoSink(participant.videoSink)
           }
 
-          setMirror(shouldMirror)
+          setMirror(mirror)
         }
 
         renderer = textureRenderer
@@ -491,7 +489,7 @@ private fun VideoRenderer(
           textureRenderer.attachBroadcastVideoSink(null)
         }
 
-        textureRenderer.setMirror(shouldMirror)
+        textureRenderer.setMirror(mirror)
       }
     },
     onRelease = {

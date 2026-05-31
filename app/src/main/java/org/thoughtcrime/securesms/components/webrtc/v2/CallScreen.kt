@@ -543,7 +543,7 @@ private fun LargeLocalVideoRenderer(
     participant = localParticipant,
     renderInPip = false,
     raiseHandAllowed = false,
-    mirrorVideo = localParticipant.cameraDirection == CameraState.Direction.FRONT,
+    mirrorVideo = localParticipant.cameraDirection == CameraState.Direction.FRONT && !localParticipant.isScreenSharing,
     showAudioIndicator = false,
     onInfoMoreInfoClick = null,
     modifier = modifier
